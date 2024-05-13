@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  backend:
+    build:
+      args:
+        user: worker
+        uid: 1000
+      context: ./
+      dockerfile: ./docker/backend/Dockerfile
+    image: training-app
+    restart: always
+    working_dir: /var/www/
+    volumes:
+      - ./backend:/var/www
+    networks:
+      - training-app-network
+  database:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./docker/database/data:/var/lib/mysql/
+    networks:
+      - training-app-network
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - 8000:80
+    volumes:
+      - ./backend:/var/www
+      - ./docker/nginx/conf:/etc/nginx/conf.d/
+    networks:
+      - training-app-network
+
+networks:
+  training-app-network:
+    driver: bridge
+

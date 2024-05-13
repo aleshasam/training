@@ -1,1 +1,4 @@
 .idea
+.env
+docker/database/data/*
+!docker/database/data/
