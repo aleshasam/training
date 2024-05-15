@@ -3,8 +3,8 @@
     Войдите в ваш аккаунт
   </h1>
   <form class="space-y-4 md:space-y-6" action="#">
-    <TextField :type="'email'" :placeholder="'name@company.com'" :label="'Ваш email'" :required="true"></TextField>
-    <TextField :type="'password'" :placeholder="'••••••••'" :label="'Пароль'" :required="true"></TextField>
+    <TextField v-model="formData.email" :type="'email'" :placeholder="'name@company.com'" :label="'Ваш email'" :required="true"></TextField>
+    <TextField v-model="formData.password" :type="'password'" :placeholder="'••••••••'" :label="'Пароль'" :required="true"></TextField>
 
     <div class="flex items-center justify-between">
       <div class="flex items-start">
@@ -36,5 +36,11 @@
 
 <script setup>
 import TextField from "@/components/forms/TextField.vue";
+import {ref} from "vue";
+
+const formData = ref({
+  email: '',
+  password: '',
+})
 
 </script>
