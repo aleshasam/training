@@ -17,11 +17,16 @@ services:
   database:
     image: mysql:5.7
     restart: always
+    container_name: training-app-database
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    # TODO: Разобраться как сделать правильно
+    # Прокидываю порт для подключения к базе при разразработке
+    ports:
+      - 3306:3306
     volumes:
       - ./docker/database/data:/var/lib/mysql/
     networks:
