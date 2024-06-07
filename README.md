@@ -13,6 +13,7 @@
 - vue-router
 - pinia
 - vite
+- axios
 
 ## Авторы
 
