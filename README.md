@@ -1,4 +1,4 @@
-# training - это будет веб приложение для личного пользования
+# training - это будет веб приложение для ведения дневника тренировок
 
 ## Стек
 ### Бекенд
@@ -20,4 +20,25 @@
 - [@aleshasam](https://github.com/aleshasam)
 
 ## TODO
-- Дописать как запускать проект
+### 1. Создать файлы .env по примеру из .env.example
+Пути:
+- ./
+- ./backend
+- ./frontend
+
+### 2. Backend
+Внутри контейнера **training-app-backend** запустить команды:
+```bash
+composer install
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+```
+
+### 2. Frontend
+Пока через nvm локально, потом возможно сделаю через докер
+Выполнять в ./frontend
+```bash
+npm i
+npm run dev
+```

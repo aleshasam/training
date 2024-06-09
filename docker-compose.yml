@@ -8,6 +8,7 @@ services:
       context: ./
       dockerfile: ./docker/backend/Dockerfile
     image: training-app
+    container_name: training-app-backend
     restart: always
     working_dir: /var/www/
     volumes:
@@ -16,8 +17,8 @@ services:
       - training-app-network
   database:
     image: mysql:5.7
-    restart: always
     container_name: training-app-database
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -33,6 +34,7 @@ services:
       - training-app-network
   nginx:
     image: nginx:alpine
+    container_name: training-app-nginx
     restart: always
     ports:
       - 8000:80
