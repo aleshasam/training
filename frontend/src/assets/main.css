@@ -5,3 +5,7 @@
 body {
     @apply antialiased bg-gray-50 dark:bg-gray-900
 }
+
+.disabled {
+    @apply opacity-25 pointer-events-none
+}
