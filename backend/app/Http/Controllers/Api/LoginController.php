@@ -16,7 +16,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return $this->success();
+            return $this->success(['user' => auth()->user()->only('id', 'name', 'email')]);
         }
 
         return $this->error('Не правильный логин или пароль.', 401);
